@@ -1,0 +1,46 @@
+﻿@model IEnumerable<TeckTree_WepApp.Entities.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <partial name="_CreateButtonPartial" model="0" />
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThumbnaImagePath)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThumbnaImagePath)
+            </td>
+            <td>
+                <partial name="_RUDButtonPartial" model="@item.Id" />
+                <a asp-controller="CategoryItem" asp-action="Index" asp-route-categoryId="@item.Id" class="btn btn-outline-secondary btn-sm">Update</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
